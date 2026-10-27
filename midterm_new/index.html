@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>mid-term</title>
+
+         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+           crossorigin=""/>
+
+         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+           crossorigin=""></script>
+	
+	
+
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; }
+  #map { height: 100vh;
+	 width: 100%
+}
+
+  /* Optional: adjust the values below to change the appearance of the legend */
+  .legend {
+      padding: 6px 8px;
+      line-height: 18px;
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      border-radius: 5px;
+  }
+
+  #map-title {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      padding: 10px 18px;
+      background: white;
+      border-radius: 5px;
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      font-weight: bold;
+  }
+
+</style>
+</head>
+
+    <body>
+	<div id="map"></div>
+        <div id="map-title"> NEIU Campus Map</div>
+
+        <script type="text/javascript">
+
+          var map = L.map('map', {
+              center: [41.9807,-87.7170],
+              zoom: 16
+          });
+
+         
+var canvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+   attribution: 'Tiles © Esri — Esri, DeLorme, NAVTEQ',
+   maxZoom: 19,
+   minZoom: 5
+}).addTo(map);
+
+var imagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles © Esri — Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
+
+var library = L.marker([41.9795, -87.7189]).addTo(map);
+library.bindPopup(` <h3>Ronald Williams Library</h3> <p>study & research.</p> `);
+
+var union = L.marker([41.9824, -87.7138]).addTo(map);
+union.bindPopup(` <h3>Student Union</h3> <p>food & student life.</p> `);
+
+var hall = L.marker([41.9818, -87.7142]).addTo(map);
+hall.bindPopup(` <h3>Bernard J. Brommel</h3> <p>hall.</p> `);
+
+var sport = L.marker([41.9767, -87.7175]).addTo(map);
+sport.bindPopup(` <h3>Physical Education Complex</h3> <p>sport & fitness.</p> `);
+
+var arts = L.marker([41.98111, -87.71917]).addTo(map);
+arts.bindPopup(` <h3>Salme Harju Steniberg Fine Arts Center</h3> <p>arts & performances.</p> `);
+
+var pic1 = '<img src="Bernard_J_Brommel_Hall.jpg" alt="Bernard Brommel Hall at NEIU" width="250"><h3>Bernard J. Brommel Hall</h3><p>hall.</p>'; 
+
+var pic2 = '<img src="Student_union_and_cafeteria.jpg" width="250"><h3>Student Union</h3><p>food & student life.</p>'; 
+
+var pic3 = '<img src="Ronald_Williams_library.jpg" width="250"><h3>Ronald Williams Library</h3><p>study & research.</p>'; 
+
+var pic4 = '<img src="Physical_Education_Complex.jpg" alt="Physical Education Complex at NEIU" width="250"><h3>Physical Education Complex</h3><p>sport & fitness.</p>'; 
+
+var pic5 = '<img src="art_and_music_building.jpg" alt="Salme Harju Steinberg Fine Arts Center" width="250"><h3>Salme Harju Steinberg Fine Arts Center</h3><p>arts & performances.</p>';
+
+hall.bindPopup(pic1); 
+union.bindPopup(pic2); 
+library.bindPopup(pic3); 
+sport.bindPopup(pic4); 
+arts.bindPopup(pic5);
+
+
+var basemaps = {
+    "Esri Light Gray": canvas,
+    "Esri World Imagery": imagery
+};
+
+L.control.layers(basemaps).addTo(map);
+
+
+</script>
+</body>
+</html>
